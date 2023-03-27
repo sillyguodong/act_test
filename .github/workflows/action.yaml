@@ -1,6 +1,12 @@
 name: Build Golang
 run-name: ${{ github.actor }} is building
-on: [push, pull_request]
+on:
+  push:
+    branches:
+      - "main"
+      - "releases/**"
+  pull_request:
+    types: [opened, reopened, edited, closed, synchronize, labeled]
 jobs:
   build:
     runs-on: ubuntu-latest
