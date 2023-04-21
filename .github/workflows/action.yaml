@@ -1,22 +1,12 @@
-name: Build Golang
-run-name: ${{ github.actor }} is building
-on:
-  push:
-    branches:
-      - "main"
-      - "releases/**"
-  pull_request:
-    types: [opened, reopened, edited, closed, synchronize, labeled]
+name: Test Github Actions Variables
+on: issue_comment
+env:
+  TOP_LEVEL_ENV_VAR: this_is_a_top_level_var_of_a_workflow
 jobs:
-  build:
+  test_vars:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
-      - name: Set up Go
-        uses: actions/setup-go@v3
-        with:
-          go-version: 1.19
-      - name: Build
-        run: go build main.go
-      - name: Execute
-        run: ./main
+      - name: Print Reop Level Variable
+        run: echo "${{ vars.TEST_VAR }}"
+      - name: Print Env Variable
+        run: echo "${{ vars.MINE_ENV_VARIABLE }}"
