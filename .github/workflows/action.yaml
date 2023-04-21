@@ -9,4 +9,4 @@ jobs:
       - name: Print Reop Level Variable
         run: echo "${{ vars.TEST_REPO_LEVEL_VAR }}"
       - name: Print Env Variable
-        run: echo "${{ vars.TEST_ENV_VAR }}"
+        run: echo "$TEST_ENV_VAR"
