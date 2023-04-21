@@ -5,8 +5,9 @@ env:
 jobs:
   test_vars:
     runs-on: ubuntu-latest
+    environment: development
     steps:
       - name: Print Reop Level Variable
         run: echo "${{ vars.TEST_REPO_LEVEL_VAR }}"
       - name: Print Environment Variable
-        run: echo "${{ vars }}"
+        run: echo "${{ vars.ENV_VAR }}"
