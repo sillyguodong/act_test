@@ -7,6 +7,6 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Print Reop Level Variable
-        run: echo "${{ vars.TEST_VAR }}"
+        run: echo "${{ vars.TEST_REPO_LEVEL_VAR }}"
       - name: Print Env Variable
-        run: echo "${{ vars.MINE_ENV_VARIABLE }}"
+        run: echo "${{ vars.TEST_ENV_VAR }}"
