@@ -8,7 +8,10 @@ jobs:
     environment: production
     steps:
       - name: Print Reop Level Variable
-        run: echo "${{ vars.TEST_REPO_LEVEL_VAR }}"
+        run: |
+          echo "${{ vars.TEST_REPO_LEVEL_VAR }}"
+          echo ""
+          echo "action: ${{ github.action }}"
       - name: Print Environment Variable
         run: |
           echo "env var: ${{ vars.ENV_VAR }}"
