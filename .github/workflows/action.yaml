@@ -11,7 +11,8 @@ jobs:
         run: echo "${{ vars.TEST_REPO_LEVEL_VAR }}"
       - name: Print Environment Variable
         run: echo "${{ vars.ENV_VAR }}"
-      - name: Print Github Context
+      - id: test print context
+        name: Print Github Context
         run: |
           echo "action: ${{ github.action }}"
           echo "action_path: ${{ github.action_path }}"
