@@ -34,4 +34,4 @@ jobs:
         run: |
           echo "action_state=yellow" >> "$GITHUB_ENV"
           echo "env: ${{ github.env }}"
-      - run: cat ${{ github.env }}
+          cat ${{ github.env }}
