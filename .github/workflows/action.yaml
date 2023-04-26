@@ -2,44 +2,54 @@ name: Test Github Actions Variables
 on:
   issue_comment:
   pull_request:
-    types: [closed]
+    types: [closed, reopened]
 env:
   TOP_LEVEL_ENV_VAR: this_is_a_top_level_var_of_a_workflow
 jobs:
-  test_vars:
+  test_pr:
     runs-on: ubuntu-latest
-    environment: production
     steps:
-      - name: Print Reop Level Variable
+      - name: Print
         run: |
-          echo "${{ vars.TEST_REPO_LEVEL_VAR }}"
-          echo ""
-          echo "action: ${{ github.action }}"
-      - uses: actions/checkout@v3
-      - id: print_env_variable
-        name: Print Environment Variable
-        run: |
-          echo "env var: ${{ vars.ENV_VAR }}"
-          echo ""
-          echo "action: ${{ github.action }}"
-          echo "action_path: ${{ github.action_path }}"
-          echo "action_ref: ${{ github.action_ref }}"
-          echo "action_repository: ${{ github.action_repository }}"
-          echo "action_status: ${{ github.action_status }}"
-      - name: Print Github Context
-        run: |
-          echo "action: ${{ github.action }}"
-          echo "action_path: ${{ github.action_path }}"
-          echo "action_ref: ${{ github.action_ref }}"
-          echo "action_repository: ${{ github.action_repository }}"
-          echo "action_status: ${{ github.action_status }}"
-      - name: Set step env
-        run: |
-          echo "action_state=yellow" >> "$GITHUB_ENV"
-          echo "env: ${{ github.env }}"
-          cat ${{ github.env }}
-      - name: Print retention days
-        run: echo "${{ github.retention_days }}"
+          echo "${{ github.ref }}"   
+          echo "${{ github.ref_name }}"   
+          echo "${{ github.ref_type }}"
+          echo "${{ github.ref_protected }}"
+          echo "${{ github.event_path }}"
+  # test_vars:
+  #   runs-on: ubuntu-latest
+  #   environment: production
+  #   steps:
+  #     - name: Print Reop Level Variable
+  #       run: |
+  #         echo "${{ vars.TEST_REPO_LEVEL_VAR }}"
+  #         echo ""
+  #         echo "action: ${{ github.action }}"
+  #     - uses: actions/checkout@v3
+  #     - id: print_env_variable
+  #       name: Print Environment Variable
+  #       run: |
+  #         echo "env var: ${{ vars.ENV_VAR }}"
+  #         echo ""
+  #         echo "action: ${{ github.action }}"
+  #         echo "action_path: ${{ github.action_path }}"
+  #         echo "action_ref: ${{ github.action_ref }}"
+  #         echo "action_repository: ${{ github.action_repository }}"
+  #         echo "action_status: ${{ github.action_status }}"
+  #     - name: Print Github Context
+  #       run: |
+  #         echo "action: ${{ github.action }}"
+  #         echo "action_path: ${{ github.action_path }}"
+  #         echo "action_ref: ${{ github.action_ref }}"
+  #         echo "action_repository: ${{ github.action_repository }}"
+  #         echo "action_status: ${{ github.action_status }}"
+  #     - name: Set step env
+  #       run: |
+  #         echo "action_state=yellow" >> "$GITHUB_ENV"
+  #         echo "env: ${{ github.env }}"
+  #         cat ${{ github.env }}
+  #     - name: Print retention days
+  #       run: echo "${{ github.retention_days }}"
 
-      - name: Print ref when closing PR
-        run: echo "${{ github.ref }}"
+  #     - name: Print ref when closing PR
+  #       run: echo "${{ github.ref }}"
