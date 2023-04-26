@@ -1,5 +1,8 @@
 name: Test Github Actions Variables
-on: issue_comment
+on:
+  issue_comment:
+  pull_request:
+    types: [closed]
 env:
   TOP_LEVEL_ENV_VAR: this_is_a_top_level_var_of_a_workflow
 jobs:
@@ -37,3 +40,6 @@ jobs:
           cat ${{ github.env }}
       - name: Print retention days
         run: echo "${{ github.retention_days }}"
+
+      - name: Print ref when closing PR
+        run: echo "${{ github.ref }}"
